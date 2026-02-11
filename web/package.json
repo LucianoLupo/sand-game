@@ -1,0 +1,11 @@
+{
+  "name": "sand-game-web",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "devDependencies": {
+    "typescript": "^5.7.0",
+    "vite": "^6.1.0",
+    "vite-plugin-wasm": "^3.4.1"
+  }
+}

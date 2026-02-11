@@ -1,0 +1,13 @@
+{
+  "name": "sand-game",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:wasm": "cd crate && wasm-pack build --target web --out-dir ../web/src/wasm",
+    "build:wasm:dev": "cd crate && wasm-pack build --dev --target web --out-dir ../web/src/wasm",
+    "dev": "npm run build:wasm:dev && cd web && npx vite",
+    "build": "npm run build:wasm && cd web && npx vite build",
+    "preview": "cd web && npx vite preview"
+  }
+}

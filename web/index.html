@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Falling Sand</title>
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <canvas id="sand-canvas"></canvas>
+  <div id="toolbar">
+    <div id="elements">
+      <button class="element-btn active" data-element="sand">Sand</button>
+      <button class="element-btn" data-element="water">Water</button>
+      <button class="element-btn" data-element="oil">Oil</button>
+      <button class="element-btn" data-element="wall">Wall</button>
+      <button class="element-btn" data-element="eraser">Eraser</button>
+    </div>
+    <div id="controls">
+      <label>
+        Brush: <input type="range" id="brush-size" min="1" max="10" value="3" />
+        <span id="brush-label">3</span>
+      </label>
+      <label>
+        <input type="checkbox" id="faucet-mode" /> Faucet
+      </label>
+      <button id="pause-btn">Pause</button>
+      <button id="clear-btn">Clear</button>
+    </div>
+    <div id="fps">0 FPS</div>
+  </div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
