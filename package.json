@@ -1,8 +1,11 @@
 {
   "name": "sand-game",
   "version": "1.0.0",
+  "description": "Web-based falling sand game with Rust/WASM simulation and WebGL rendering",
   "private": true,
   "type": "module",
+  "license": "MIT",
+  "author": "Luciano Lupo",
   "scripts": {
     "build:wasm": "cd crate && wasm-pack build --target web --out-dir ../web/src/wasm",
     "build:wasm:dev": "cd crate && wasm-pack build --dev --target web --out-dir ../web/src/wasm",

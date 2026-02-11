@@ -101,12 +101,7 @@ fn update_liquid(
 
     if below_y < height {
         let below_species = get_species(cells, width, x, below_y);
-        if below_species == SPECIES_EMPTY {
-            swap_cells(cells, width, x, y, x, below_y);
-            set_clock(cells, width, x, below_y, clock);
-            return;
-        }
-        if is_water && below_species == SPECIES_OIL {
+        if below_species == SPECIES_EMPTY || (is_water && below_species == SPECIES_OIL) {
             swap_cells(cells, width, x, y, x, below_y);
             set_clock(cells, width, x, below_y, clock);
             return;
@@ -138,12 +133,7 @@ fn update_liquid(
         }
         let nx = nx as usize;
         let target_species = get_species(cells, width, nx, y);
-        if target_species == SPECIES_EMPTY {
-            swap_cells(cells, width, x, y, nx, y);
-            set_clock(cells, width, nx, y, clock);
-            return;
-        }
-        if is_water && target_species == SPECIES_OIL {
+        if target_species == SPECIES_EMPTY || (is_water && target_species == SPECIES_OIL) {
             swap_cells(cells, width, x, y, nx, y);
             set_clock(cells, width, nx, y, clock);
             return;

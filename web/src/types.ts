@@ -12,16 +12,6 @@ export interface Faucet {
   species: Species;
 }
 
-export interface SimulationAPI {
-  width(): number;
-  height(): number;
-  tick(): void;
-  cells_ptr(): number;
-  set_cell(x: number, y: number, species: number): void;
-  clear(): void;
-  memory: WebAssembly.Memory;
-}
-
 // Color palette for rendering
 export const COLORS: Record<number, [number, number, number]> = {
   [Species.Empty]: [26, 26, 46],      // #1a1a2e

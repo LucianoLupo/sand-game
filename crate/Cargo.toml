@@ -2,6 +2,8 @@
 name = "sand-sim"
 version = "0.1.0"
 edition = "2021"
+description = "Cellular automata particle simulation for the falling sand game"
+license = "MIT"
 
 [lib]
 crate-type = ["cdylib", "rlib"]
