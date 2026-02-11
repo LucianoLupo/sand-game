@@ -2,6 +2,10 @@
 
 A web-based particle physics sandbox inspired by classic falling sand games. Draw sand, water, oil, and walls and watch them interact with realistic density-based physics.
 
+![Density layering — sand settles at the bottom, water in the middle, oil floats on top](screenshots/density-layering.png)
+
+![Particles flowing down ramps and interacting with wall structures](screenshots/sandbox.png)
+
 ## How it works
 
 - **Rust/WASM** handles the cellular automata simulation (~18KB optimized)
