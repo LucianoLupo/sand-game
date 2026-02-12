@@ -1,0 +1,205 @@
+{
+  "scenario": "hourglass",
+  "width": 300,
+  "height": 200,
+  "totalTicks": 900,
+  "faucetCount": 0,
+  "faucets": [],
+  "snapshots": [
+    {
+      "tick": 0,
+      "total": {
+        "Empty": 52119,
+        "Sand": 6565,
+        "Wall": 1316
+      },
+      "topHalf": {
+        "Empty": 22777,
+        "Sand": 6565,
+        "Wall": 658
+      },
+      "bottomHalf": {
+        "Empty": 29342,
+        "Wall": 658
+      },
+      "leftThird": {
+        "Empty": 19358,
+        "Sand": 392,
+        "Wall": 250
+      },
+      "rightThird": {
+        "Empty": 19320,
+        "Sand": 422,
+        "Wall": 258
+      }
+    },
+    {
+      "tick": 150,
+      "total": {
+        "Empty": 52119,
+        "Sand": 6565,
+        "Wall": 1316
+      },
+      "topHalf": {
+        "Empty": 23527,
+        "Sand": 5815,
+        "Wall": 658
+      },
+      "bottomHalf": {
+        "Empty": 28592,
+        "Sand": 750,
+        "Wall": 658
+      },
+      "leftThird": {
+        "Empty": 19358,
+        "Sand": 392,
+        "Wall": 250
+      },
+      "rightThird": {
+        "Empty": 19319,
+        "Sand": 423,
+        "Wall": 258
+      }
+    },
+    {
+      "tick": 300,
+      "total": {
+        "Empty": 52119,
+        "Sand": 6565,
+        "Wall": 1316
+      },
+      "topHalf": {
+        "Empty": 24277,
+        "Sand": 5065,
+        "Wall": 658
+      },
+      "bottomHalf": {
+        "Empty": 27842,
+        "Sand": 1500,
+        "Wall": 658
+      },
+      "leftThird": {
+        "Empty": 19358,
+        "Sand": 392,
+        "Wall": 250
+      },
+      "rightThird": {
+        "Empty": 19319,
+        "Sand": 423,
+        "Wall": 258
+      }
+    },
+    {
+      "tick": 450,
+      "total": {
+        "Empty": 52119,
+        "Sand": 6565,
+        "Wall": 1316
+      },
+      "topHalf": {
+        "Empty": 25027,
+        "Sand": 4315,
+        "Wall": 658
+      },
+      "bottomHalf": {
+        "Empty": 27092,
+        "Sand": 2250,
+        "Wall": 658
+      },
+      "leftThird": {
+        "Empty": 19358,
+        "Sand": 392,
+        "Wall": 250
+      },
+      "rightThird": {
+        "Empty": 19319,
+        "Sand": 423,
+        "Wall": 258
+      }
+    },
+    {
+      "tick": 600,
+      "total": {
+        "Empty": 52119,
+        "Sand": 6565,
+        "Wall": 1316
+      },
+      "topHalf": {
+        "Empty": 25777,
+        "Sand": 3565,
+        "Wall": 658
+      },
+      "bottomHalf": {
+        "Empty": 26342,
+        "Sand": 3000,
+        "Wall": 658
+      },
+      "leftThird": {
+        "Empty": 19362,
+        "Sand": 388,
+        "Wall": 250
+      },
+      "rightThird": {
+        "Empty": 19329,
+        "Sand": 413,
+        "Wall": 258
+      }
+    },
+    {
+      "tick": 750,
+      "total": {
+        "Empty": 52119,
+        "Sand": 6565,
+        "Wall": 1316
+      },
+      "topHalf": {
+        "Empty": 26527,
+        "Sand": 2815,
+        "Wall": 658
+      },
+      "bottomHalf": {
+        "Empty": 25592,
+        "Sand": 3750,
+        "Wall": 658
+      },
+      "leftThird": {
+        "Empty": 19383,
+        "Sand": 367,
+        "Wall": 250
+      },
+      "rightThird": {
+        "Empty": 19342,
+        "Sand": 400,
+        "Wall": 258
+      }
+    },
+    {
+      "tick": 900,
+      "total": {
+        "Empty": 52119,
+        "Sand": 6565,
+        "Wall": 1316
+      },
+      "topHalf": {
+        "Empty": 27277,
+        "Sand": 2065,
+        "Wall": 658
+      },
+      "bottomHalf": {
+        "Empty": 24842,
+        "Sand": 4500,
+        "Wall": 658
+      },
+      "leftThird": {
+        "Empty": 19396,
+        "Sand": 354,
+        "Wall": 250
+      },
+      "rightThird": {
+        "Empty": 19354,
+        "Sand": 388,
+        "Wall": 258
+      }
+    }
+  ]
+}

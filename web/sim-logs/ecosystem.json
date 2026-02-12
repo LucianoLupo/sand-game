@@ -1,0 +1,341 @@
+{
+  "scenario": "ecosystem",
+  "width": 300,
+  "height": 200,
+  "totalTicks": 600,
+  "faucetCount": 2,
+  "faucets": [
+    {
+      "x": 45,
+      "y": 189,
+      "species": 8,
+      "size": 1
+    },
+    {
+      "x": 254,
+      "y": 189,
+      "species": 2,
+      "size": 1
+    }
+  ],
+  "snapshots": [
+    {
+      "tick": 0,
+      "total": {
+        "Empty": 51961,
+        "Water": 2173,
+        "Wall": 1764,
+        "Plant": 414,
+        "Lava": 2173,
+        "Stone": 733,
+        "Ice": 212,
+        "Wood": 570
+      },
+      "topHalf": {
+        "Empty": 29128,
+        "Wall": 872
+      },
+      "bottomHalf": {
+        "Empty": 22833,
+        "Water": 2173,
+        "Wall": 892,
+        "Plant": 414,
+        "Lava": 2173,
+        "Stone": 733,
+        "Ice": 212,
+        "Wood": 570
+      },
+      "leftThird": {
+        "Empty": 16713,
+        "Wall": 682,
+        "Plant": 54,
+        "Lava": 2173,
+        "Stone": 293,
+        "Wood": 85
+      },
+      "rightThird": {
+        "Empty": 16579,
+        "Water": 2173,
+        "Wall": 682,
+        "Plant": 54,
+        "Stone": 240,
+        "Ice": 212,
+        "Wood": 60
+      }
+    },
+    {
+      "tick": 100,
+      "total": {
+        "Empty": 51985,
+        "Water": 2320,
+        "Wall": 1764,
+        "Fire": 147,
+        "Plant": 378,
+        "Lava": 2483,
+        "Stone": 423,
+        "Ice": 19,
+        "Smoke": 25,
+        "Wood": 456
+      },
+      "topHalf": {
+        "Empty": 29118,
+        "Wall": 872,
+        "Fire": 2,
+        "Smoke": 8
+      },
+      "bottomHalf": {
+        "Empty": 22867,
+        "Water": 2320,
+        "Wall": 892,
+        "Fire": 145,
+        "Plant": 378,
+        "Lava": 2483,
+        "Stone": 423,
+        "Ice": 19,
+        "Smoke": 17,
+        "Wood": 456
+      },
+      "leftThird": {
+        "Empty": 16754,
+        "Wall": 682,
+        "Fire": 97,
+        "Lava": 2442,
+        "Smoke": 25
+      },
+      "rightThird": {
+        "Empty": 16596,
+        "Water": 2303,
+        "Wall": 682,
+        "Plant": 100,
+        "Stone": 240,
+        "Ice": 19,
+        "Wood": 60
+      }
+    },
+    {
+      "tick": 200,
+      "total": {
+        "Empty": 52044,
+        "Water": 2158,
+        "Wall": 1764,
+        "Fire": 93,
+        "Plant": 515,
+        "Lava": 2512,
+        "Stone": 394,
+        "Smoke": 131,
+        "Wood": 389
+      },
+      "topHalf": {
+        "Empty": 29021,
+        "Wall": 872,
+        "Fire": 19,
+        "Smoke": 88
+      },
+      "bottomHalf": {
+        "Empty": 23023,
+        "Water": 2158,
+        "Wall": 892,
+        "Fire": 74,
+        "Plant": 515,
+        "Lava": 2512,
+        "Stone": 394,
+        "Smoke": 43,
+        "Wood": 389
+      },
+      "leftThird": {
+        "Empty": 16838,
+        "Wall": 682,
+        "Lava": 2393,
+        "Smoke": 87
+      },
+      "rightThird": {
+        "Empty": 16640,
+        "Water": 2122,
+        "Wall": 682,
+        "Plant": 256,
+        "Stone": 240,
+        "Wood": 60
+      }
+    },
+    {
+      "tick": 300,
+      "total": {
+        "Empty": 52089,
+        "Water": 1971,
+        "Wall": 1764,
+        "Fire": 63,
+        "Plant": 672,
+        "Lava": 2536,
+        "Stone": 370,
+        "Smoke": 193,
+        "Wood": 342
+      },
+      "topHalf": {
+        "Empty": 28971,
+        "Wall": 872,
+        "Fire": 7,
+        "Smoke": 150
+      },
+      "bottomHalf": {
+        "Empty": 23118,
+        "Water": 1971,
+        "Wall": 892,
+        "Fire": 56,
+        "Plant": 672,
+        "Lava": 2536,
+        "Stone": 370,
+        "Smoke": 43,
+        "Wood": 342
+      },
+      "leftThird": {
+        "Empty": 16889,
+        "Wall": 682,
+        "Lava": 2350,
+        "Smoke": 79
+      },
+      "rightThird": {
+        "Empty": 16667,
+        "Water": 1951,
+        "Wall": 682,
+        "Plant": 400,
+        "Stone": 240,
+        "Wood": 60
+      }
+    },
+    {
+      "tick": 400,
+      "total": {
+        "Empty": 52123,
+        "Water": 1835,
+        "Wall": 1764,
+        "Fire": 62,
+        "Plant": 774,
+        "Lava": 2556,
+        "Stone": 350,
+        "Smoke": 240,
+        "Wood": 296
+      },
+      "topHalf": {
+        "Empty": 28907,
+        "Wall": 872,
+        "Fire": 21,
+        "Smoke": 200
+      },
+      "bottomHalf": {
+        "Empty": 23216,
+        "Water": 1835,
+        "Wall": 892,
+        "Fire": 41,
+        "Plant": 774,
+        "Lava": 2556,
+        "Stone": 350,
+        "Smoke": 40,
+        "Wood": 296
+      },
+      "leftThird": {
+        "Empty": 16927,
+        "Wall": 682,
+        "Lava": 2310,
+        "Smoke": 81
+      },
+      "rightThird": {
+        "Empty": 16687,
+        "Water": 1815,
+        "Wall": 682,
+        "Plant": 516,
+        "Stone": 240,
+        "Wood": 60
+      }
+    },
+    {
+      "tick": 500,
+      "total": {
+        "Empty": 52154,
+        "Water": 1720,
+        "Wall": 1764,
+        "Fire": 70,
+        "Plant": 858,
+        "Lava": 2574,
+        "Stone": 332,
+        "Smoke": 279,
+        "Wood": 249
+      },
+      "topHalf": {
+        "Empty": 28880,
+        "Wall": 872,
+        "Fire": 1,
+        "Smoke": 247
+      },
+      "bottomHalf": {
+        "Empty": 23274,
+        "Water": 1720,
+        "Wall": 892,
+        "Fire": 69,
+        "Plant": 858,
+        "Lava": 2574,
+        "Stone": 332,
+        "Smoke": 32,
+        "Wood": 249
+      },
+      "leftThird": {
+        "Empty": 16966,
+        "Wall": 682,
+        "Lava": 2267,
+        "Smoke": 85
+      },
+      "rightThird": {
+        "Empty": 16696,
+        "Water": 1713,
+        "Wall": 682,
+        "Plant": 609,
+        "Stone": 240,
+        "Wood": 60
+      }
+    },
+    {
+      "tick": 600,
+      "total": {
+        "Empty": 52187,
+        "Water": 1608,
+        "Wall": 1764,
+        "Fire": 56,
+        "Plant": 948,
+        "Lava": 2593,
+        "Stone": 313,
+        "Smoke": 316,
+        "Wood": 215
+      },
+      "topHalf": {
+        "Empty": 28833,
+        "Wall": 872,
+        "Fire": 15,
+        "Smoke": 280
+      },
+      "bottomHalf": {
+        "Empty": 23354,
+        "Water": 1608,
+        "Wall": 892,
+        "Fire": 41,
+        "Plant": 948,
+        "Lava": 2593,
+        "Stone": 313,
+        "Smoke": 36,
+        "Wood": 215
+      },
+      "leftThird": {
+        "Empty": 16999,
+        "Wall": 682,
+        "Lava": 2232,
+        "Smoke": 87
+      },
+      "rightThird": {
+        "Empty": 16701,
+        "Water": 1601,
+        "Wall": 682,
+        "Plant": 716,
+        "Stone": 240,
+        "Wood": 60
+      }
+    }
+  ]
+}

@@ -29,6 +29,7 @@ export class UI {
   private simHeight: number;
   private onDraw: (x: number, y: number, species: Species, brushSize: number) => void;
   private onClear: () => void;
+  private onLoadScenario: (key: string) => void;
   private mouseDown: boolean = false;
   private abortController: AbortController;
 
@@ -38,18 +39,21 @@ export class UI {
     simHeight: number,
     onDraw: (x: number, y: number, species: Species, brushSize: number) => void,
     onClear: () => void,
+    onLoadScenario: (key: string) => void,
   ) {
     this.canvas = canvas;
     this.simWidth = simWidth;
     this.simHeight = simHeight;
     this.onDraw = onDraw;
     this.onClear = onClear;
+    this.onLoadScenario = onLoadScenario;
     this.abortController = new AbortController();
 
     this.bindElementButtons();
     this.bindBrushSize();
     this.bindFaucetMode();
     this.bindPauseClear();
+    this.bindScenarioButtons();
     this.bindCanvasMouse();
     this.bindCanvasTouch();
   }
@@ -158,6 +162,22 @@ export class UI {
       },
       { signal },
     );
+  }
+
+  private bindScenarioButtons(): void {
+    const signal = this.abortController.signal;
+    const buttons = document.querySelectorAll<HTMLButtonElement>(".scenario-btn");
+
+    for (const btn of buttons) {
+      btn.addEventListener(
+        "click",
+        () => {
+          const key = btn.dataset.scenario!;
+          this.onLoadScenario(key);
+        },
+        { signal },
+      );
+    }
   }
 
   private bindCanvasMouse(): void {

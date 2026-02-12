@@ -1,0 +1,264 @@
+{
+  "scenario": "water-cycle",
+  "width": 300,
+  "height": 200,
+  "totalTicks": 600,
+  "faucetCount": 5,
+  "faucets": [
+    {
+      "x": 109,
+      "y": 191,
+      "species": 8,
+      "size": 1
+    },
+    {
+      "x": 189,
+      "y": 191,
+      "species": 8,
+      "size": 1
+    },
+    {
+      "x": 119,
+      "y": 13,
+      "species": 2,
+      "size": 1
+    },
+    {
+      "x": 149,
+      "y": 13,
+      "species": 2,
+      "size": 1
+    },
+    {
+      "x": 179,
+      "y": 13,
+      "species": 2,
+      "size": 1
+    }
+  ],
+  "snapshots": [
+    {
+      "tick": 0,
+      "total": {
+        "Empty": 56452,
+        "Wall": 1604,
+        "Lava": 1944
+      },
+      "topHalf": {
+        "Empty": 29208,
+        "Wall": 792
+      },
+      "bottomHalf": {
+        "Empty": 27244,
+        "Wall": 812,
+        "Lava": 1944
+      },
+      "leftThird": {
+        "Empty": 18876,
+        "Wall": 602,
+        "Lava": 522
+      },
+      "rightThird": {
+        "Empty": 18876,
+        "Wall": 602,
+        "Lava": 522
+      }
+    },
+    {
+      "tick": 100,
+      "total": {
+        "Empty": 56350,
+        "Water": 102,
+        "Wall": 1604,
+        "Lava": 1944
+      },
+      "topHalf": {
+        "Empty": 29121,
+        "Water": 87,
+        "Wall": 792
+      },
+      "bottomHalf": {
+        "Empty": 27229,
+        "Water": 15,
+        "Wall": 812,
+        "Lava": 1944
+      },
+      "leftThird": {
+        "Empty": 18876,
+        "Wall": 602,
+        "Lava": 522
+      },
+      "rightThird": {
+        "Empty": 18876,
+        "Wall": 602,
+        "Lava": 522
+      }
+    },
+    {
+      "tick": 200,
+      "total": {
+        "Empty": 56251,
+        "Water": 168,
+        "Wall": 1604,
+        "Steam": 33,
+        "Lava": 1944
+      },
+      "topHalf": {
+        "Empty": 29121,
+        "Water": 87,
+        "Wall": 792
+      },
+      "bottomHalf": {
+        "Empty": 27130,
+        "Water": 81,
+        "Wall": 812,
+        "Steam": 33,
+        "Lava": 1944
+      },
+      "leftThird": {
+        "Empty": 18876,
+        "Wall": 602,
+        "Lava": 522
+      },
+      "rightThird": {
+        "Empty": 18876,
+        "Wall": 602,
+        "Lava": 522
+      }
+    },
+    {
+      "tick": 300,
+      "total": {
+        "Empty": 56152,
+        "Water": 198,
+        "Wall": 1604,
+        "Steam": 102,
+        "Lava": 1944
+      },
+      "topHalf": {
+        "Empty": 29100,
+        "Water": 88,
+        "Wall": 792,
+        "Steam": 20
+      },
+      "bottomHalf": {
+        "Empty": 27052,
+        "Water": 110,
+        "Wall": 812,
+        "Steam": 82,
+        "Lava": 1944
+      },
+      "leftThird": {
+        "Empty": 18876,
+        "Wall": 602,
+        "Lava": 522
+      },
+      "rightThird": {
+        "Empty": 18876,
+        "Wall": 602,
+        "Lava": 522
+      }
+    },
+    {
+      "tick": 400,
+      "total": {
+        "Empty": 56050,
+        "Water": 231,
+        "Wall": 1604,
+        "Steam": 171,
+        "Lava": 1944
+      },
+      "topHalf": {
+        "Empty": 29051,
+        "Water": 98,
+        "Wall": 792,
+        "Steam": 59
+      },
+      "bottomHalf": {
+        "Empty": 26999,
+        "Water": 133,
+        "Wall": 812,
+        "Steam": 112,
+        "Lava": 1944
+      },
+      "leftThird": {
+        "Empty": 18876,
+        "Wall": 602,
+        "Lava": 522
+      },
+      "rightThird": {
+        "Empty": 18876,
+        "Wall": 602,
+        "Lava": 522
+      }
+    },
+    {
+      "tick": 500,
+      "total": {
+        "Empty": 55951,
+        "Water": 262,
+        "Wall": 1604,
+        "Steam": 239,
+        "Lava": 1944
+      },
+      "topHalf": {
+        "Empty": 28995,
+        "Water": 110,
+        "Wall": 792,
+        "Steam": 103
+      },
+      "bottomHalf": {
+        "Empty": 26956,
+        "Water": 152,
+        "Wall": 812,
+        "Steam": 136,
+        "Lava": 1944
+      },
+      "leftThird": {
+        "Empty": 18876,
+        "Wall": 602,
+        "Lava": 522
+      },
+      "rightThird": {
+        "Empty": 18876,
+        "Wall": 602,
+        "Lava": 522
+      }
+    },
+    {
+      "tick": 600,
+      "total": {
+        "Empty": 55862,
+        "Water": 285,
+        "Wall": 1604,
+        "Steam": 305,
+        "Lava": 1944
+      },
+      "topHalf": {
+        "Empty": 28940,
+        "Water": 110,
+        "Wall": 792,
+        "Steam": 158
+      },
+      "bottomHalf": {
+        "Empty": 26922,
+        "Water": 175,
+        "Wall": 812,
+        "Steam": 147,
+        "Lava": 1944
+      },
+      "leftThird": {
+        "Empty": 18874,
+        "Wall": 602,
+        "Steam": 2,
+        "Lava": 522
+      },
+      "rightThird": {
+        "Empty": 18875,
+        "Wall": 602,
+        "Steam": 1,
+        "Lava": 522
+      }
+    }
+  ]
+}

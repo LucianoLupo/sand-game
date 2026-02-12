@@ -1,0 +1,279 @@
+{
+  "scenario": "rain-machine",
+  "width": 300,
+  "height": 200,
+  "totalTicks": 600,
+  "faucetCount": 9,
+  "faucets": [
+    {
+      "x": 45,
+      "y": 18,
+      "species": 7,
+      "size": 2
+    },
+    {
+      "x": 70,
+      "y": 18,
+      "species": 7,
+      "size": 2
+    },
+    {
+      "x": 95,
+      "y": 18,
+      "species": 7,
+      "size": 2
+    },
+    {
+      "x": 120,
+      "y": 18,
+      "species": 7,
+      "size": 2
+    },
+    {
+      "x": 145,
+      "y": 18,
+      "species": 7,
+      "size": 2
+    },
+    {
+      "x": 170,
+      "y": 18,
+      "species": 7,
+      "size": 2
+    },
+    {
+      "x": 195,
+      "y": 18,
+      "species": 7,
+      "size": 2
+    },
+    {
+      "x": 220,
+      "y": 18,
+      "species": 7,
+      "size": 2
+    },
+    {
+      "x": 245,
+      "y": 18,
+      "species": 7,
+      "size": 2
+    }
+  ],
+  "snapshots": [
+    {
+      "tick": 0,
+      "total": {
+        "Empty": 57776,
+        "Wall": 2224
+      },
+      "topHalf": {
+        "Empty": 28904,
+        "Wall": 1096
+      },
+      "bottomHalf": {
+        "Empty": 28872,
+        "Wall": 1128
+      },
+      "leftThird": {
+        "Empty": 19194,
+        "Wall": 806
+      },
+      "rightThird": {
+        "Empty": 19194,
+        "Wall": 806
+      }
+    },
+    {
+      "tick": 100,
+      "total": {
+        "Empty": 56927,
+        "Water": 197,
+        "Wall": 2224,
+        "Steam": 652
+      },
+      "topHalf": {
+        "Empty": 28055,
+        "Water": 197,
+        "Wall": 1096,
+        "Steam": 652
+      },
+      "bottomHalf": {
+        "Empty": 28872,
+        "Wall": 1128
+      },
+      "leftThird": {
+        "Empty": 18937,
+        "Water": 60,
+        "Wall": 806,
+        "Steam": 197
+      },
+      "rightThird": {
+        "Empty": 18982,
+        "Water": 53,
+        "Wall": 806,
+        "Steam": 159
+      }
+    },
+    {
+      "tick": 200,
+      "total": {
+        "Empty": 56351,
+        "Water": 782,
+        "Wall": 2224,
+        "Steam": 643
+      },
+      "topHalf": {
+        "Empty": 27572,
+        "Water": 689,
+        "Wall": 1096,
+        "Steam": 643
+      },
+      "bottomHalf": {
+        "Empty": 28779,
+        "Water": 93,
+        "Wall": 1128
+      },
+      "leftThird": {
+        "Empty": 18766,
+        "Water": 229,
+        "Wall": 806,
+        "Steam": 199
+      },
+      "rightThird": {
+        "Empty": 18836,
+        "Water": 202,
+        "Wall": 806,
+        "Steam": 156
+      }
+    },
+    {
+      "tick": 300,
+      "total": {
+        "Empty": 55799,
+        "Water": 1342,
+        "Wall": 2224,
+        "Steam": 635
+      },
+      "topHalf": {
+        "Empty": 27346,
+        "Water": 923,
+        "Wall": 1096,
+        "Steam": 635
+      },
+      "bottomHalf": {
+        "Empty": 28453,
+        "Water": 419,
+        "Wall": 1128
+      },
+      "leftThird": {
+        "Empty": 18595,
+        "Water": 401,
+        "Wall": 806,
+        "Steam": 198
+      },
+      "rightThird": {
+        "Empty": 18692,
+        "Water": 350,
+        "Wall": 806,
+        "Steam": 152
+      }
+    },
+    {
+      "tick": 400,
+      "total": {
+        "Empty": 55252,
+        "Water": 1903,
+        "Wall": 2224,
+        "Steam": 621
+      },
+      "topHalf": {
+        "Empty": 27126,
+        "Water": 1157,
+        "Wall": 1096,
+        "Steam": 621
+      },
+      "bottomHalf": {
+        "Empty": 28126,
+        "Water": 746,
+        "Wall": 1128
+      },
+      "leftThird": {
+        "Empty": 18446,
+        "Water": 559,
+        "Wall": 806,
+        "Steam": 189
+      },
+      "rightThird": {
+        "Empty": 18546,
+        "Water": 502,
+        "Wall": 806,
+        "Steam": 146
+      }
+    },
+    {
+      "tick": 500,
+      "total": {
+        "Empty": 54695,
+        "Water": 2454,
+        "Wall": 2224,
+        "Steam": 627
+      },
+      "topHalf": {
+        "Empty": 26924,
+        "Water": 1353,
+        "Wall": 1096,
+        "Steam": 627
+      },
+      "bottomHalf": {
+        "Empty": 27771,
+        "Water": 1101,
+        "Wall": 1128
+      },
+      "leftThird": {
+        "Empty": 18291,
+        "Water": 709,
+        "Wall": 806,
+        "Steam": 194
+      },
+      "rightThird": {
+        "Empty": 18398,
+        "Water": 630,
+        "Wall": 806,
+        "Steam": 166
+      }
+    },
+    {
+      "tick": 600,
+      "total": {
+        "Empty": 54146,
+        "Water": 3014,
+        "Wall": 2224,
+        "Steam": 616
+      },
+      "topHalf": {
+        "Empty": 26696,
+        "Water": 1592,
+        "Wall": 1096,
+        "Steam": 616
+      },
+      "bottomHalf": {
+        "Empty": 27450,
+        "Water": 1422,
+        "Wall": 1128
+      },
+      "leftThird": {
+        "Empty": 18128,
+        "Water": 870,
+        "Wall": 806,
+        "Steam": 196
+      },
+      "rightThird": {
+        "Empty": 18274,
+        "Water": 777,
+        "Wall": 806,
+        "Steam": 143
+      }
+    }
+  ]
+}

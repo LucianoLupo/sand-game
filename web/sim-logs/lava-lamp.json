@@ -1,0 +1,210 @@
+{
+  "scenario": "lava-lamp",
+  "width": 300,
+  "height": 200,
+  "totalTicks": 600,
+  "faucetCount": 1,
+  "faucets": [
+    {
+      "x": 150,
+      "y": 13,
+      "species": 2,
+      "size": 1
+    }
+  ],
+  "snapshots": [
+    {
+      "tick": 0,
+      "total": {
+        "Empty": 58837,
+        "Wall": 928,
+        "Lava": 235
+      },
+      "topHalf": {
+        "Empty": 29546,
+        "Wall": 454
+      },
+      "bottomHalf": {
+        "Empty": 29291,
+        "Wall": 474,
+        "Lava": 235
+      },
+      "leftThird": {
+        "Empty": 20000
+      },
+      "rightThird": {
+        "Empty": 20000
+      }
+    },
+    {
+      "tick": 100,
+      "total": {
+        "Empty": 58803,
+        "Water": 34,
+        "Wall": 928,
+        "Lava": 235
+      },
+      "topHalf": {
+        "Empty": 29517,
+        "Water": 29,
+        "Wall": 454
+      },
+      "bottomHalf": {
+        "Empty": 29286,
+        "Water": 5,
+        "Wall": 474,
+        "Lava": 235
+      },
+      "leftThird": {
+        "Empty": 20000
+      },
+      "rightThird": {
+        "Empty": 20000
+      }
+    },
+    {
+      "tick": 200,
+      "total": {
+        "Empty": 58770,
+        "Water": 58,
+        "Wall": 928,
+        "Steam": 9,
+        "Lava": 235
+      },
+      "topHalf": {
+        "Empty": 29517,
+        "Water": 29,
+        "Wall": 454
+      },
+      "bottomHalf": {
+        "Empty": 29253,
+        "Water": 29,
+        "Wall": 474,
+        "Steam": 9,
+        "Lava": 235
+      },
+      "leftThird": {
+        "Empty": 20000
+      },
+      "rightThird": {
+        "Empty": 20000
+      }
+    },
+    {
+      "tick": 300,
+      "total": {
+        "Empty": 58737,
+        "Water": 64,
+        "Wall": 928,
+        "Steam": 36,
+        "Lava": 235
+      },
+      "topHalf": {
+        "Empty": 29510,
+        "Water": 29,
+        "Wall": 454,
+        "Steam": 7
+      },
+      "bottomHalf": {
+        "Empty": 29227,
+        "Water": 35,
+        "Wall": 474,
+        "Steam": 29,
+        "Lava": 235
+      },
+      "leftThird": {
+        "Empty": 20000
+      },
+      "rightThird": {
+        "Empty": 20000
+      }
+    },
+    {
+      "tick": 400,
+      "total": {
+        "Empty": 58703,
+        "Water": 80,
+        "Wall": 928,
+        "Steam": 54,
+        "Lava": 235
+      },
+      "topHalf": {
+        "Empty": 29499,
+        "Water": 32,
+        "Wall": 454,
+        "Steam": 15
+      },
+      "bottomHalf": {
+        "Empty": 29204,
+        "Water": 48,
+        "Wall": 474,
+        "Steam": 39,
+        "Lava": 235
+      },
+      "leftThird": {
+        "Empty": 20000
+      },
+      "rightThird": {
+        "Empty": 20000
+      }
+    },
+    {
+      "tick": 500,
+      "total": {
+        "Empty": 58670,
+        "Water": 87,
+        "Wall": 928,
+        "Steam": 80,
+        "Lava": 235
+      },
+      "topHalf": {
+        "Empty": 29483,
+        "Water": 31,
+        "Wall": 454,
+        "Steam": 32
+      },
+      "bottomHalf": {
+        "Empty": 29187,
+        "Water": 56,
+        "Wall": 474,
+        "Steam": 48,
+        "Lava": 235
+      },
+      "leftThird": {
+        "Empty": 20000
+      },
+      "rightThird": {
+        "Empty": 20000
+      }
+    },
+    {
+      "tick": 600,
+      "total": {
+        "Empty": 58643,
+        "Water": 92,
+        "Wall": 928,
+        "Steam": 102,
+        "Lava": 235
+      },
+      "topHalf": {
+        "Empty": 29468,
+        "Water": 32,
+        "Wall": 454,
+        "Steam": 46
+      },
+      "bottomHalf": {
+        "Empty": 29175,
+        "Water": 60,
+        "Wall": 474,
+        "Steam": 56,
+        "Lava": 235
+      },
+      "leftThird": {
+        "Empty": 20000
+      },
+      "rightThird": {
+        "Empty": 20000
+      }
+    }
+  ]
+}

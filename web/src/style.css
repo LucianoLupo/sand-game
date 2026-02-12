@@ -77,6 +77,31 @@ body {
 .element-btn[data-element="wall"].active { border-color: #808080; color: #a0a0a0; }
 .element-btn[data-element="eraser"].active { border-color: #ff6b6b; color: #ff6b6b; }
 
+#scenarios {
+  display: flex;
+  gap: 4px;
+  padding-left: 12px;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  flex-wrap: wrap;
+}
+
+.scenario-btn {
+  padding: 4px 10px;
+  border: 1px solid rgba(180, 100, 255, 0.3);
+  border-radius: 6px;
+  background: rgba(180, 100, 255, 0.08);
+  color: #b89adb;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.15s;
+}
+
+.scenario-btn:hover {
+  background: rgba(180, 100, 255, 0.2);
+  border-color: rgba(180, 100, 255, 0.5);
+  color: #d4b8f0;
+}
+
 #controls {
   display: flex;
   align-items: center;

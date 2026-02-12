@@ -2,6 +2,7 @@ import init, { World } from "./wasm/sand_sim";
 import { Renderer } from "./renderer";
 import { UI } from "./ui";
 import { Species } from "./types";
+import { SCENARIOS } from "./scenarios";
 
 const SIM_WIDTH = 300;
 const SIM_HEIGHT = 200;
@@ -30,7 +31,17 @@ async function main() {
     }
   }
 
-  const ui = new UI(canvas, SIM_WIDTH, SIM_HEIGHT, drawBrush, () => world.clear());
+  const ui = new UI(canvas, SIM_WIDTH, SIM_HEIGHT, drawBrush, () => world.clear(), (key) => {
+    const scenario = SCENARIOS[key];
+    if (!scenario) return;
+    world.clear();
+    ui.faucets = [];
+    ui.faucets = scenario.build(SIM_WIDTH, SIM_HEIGHT, (x, y, s) => world.set_cell(x, y, s));
+    if (ui.paused) {
+      ui.paused = false;
+      document.getElementById("pause-btn")!.textContent = "Pause";
+    }
+  });
 
   window.addEventListener("resize", () => renderer.resize());
 
