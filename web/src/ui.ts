@@ -4,7 +4,11 @@ const ELEMENT_MAP: Record<string, Species> = {
   sand: Species.Sand,
   water: Species.Water,
   oil: Species.Oil,
+  lava: Species.Lava,
   fire: Species.Fire,
+  steam: Species.Steam,
+  plant: Species.Plant,
+  stone: Species.Stone,
   wall: Species.Wall,
   eraser: Species.Empty,
 };

@@ -26,6 +26,10 @@ uniform vec3 u_colorWater;
 uniform vec3 u_colorOil;
 uniform vec3 u_colorWall;
 uniform vec3 u_colorFire;
+uniform vec3 u_colorPlant;
+uniform vec3 u_colorSteam;
+uniform vec3 u_colorLava;
+uniform vec3 u_colorStone;
 
 void main() {
   vec4 cell = texture(u_cells, v_texCoord);
@@ -58,6 +62,24 @@ void main() {
     // Flicker: ra drives orange-to-yellow variation
     color.r += ra * 0.05;
     color.g += ra * 0.15 - 0.05;
+  } else if (species == ${Species.Plant}) {
+    color = u_colorPlant;
+    // Vary green channel for organic look
+    color.g += ra * 0.06 - 0.03;
+    color.r += ra * 0.02 - 0.01;
+  } else if (species == ${Species.Steam}) {
+    color = u_colorSteam;
+    // Wispy variation
+    color += vec3(ra * 0.04 - 0.02);
+  } else if (species == ${Species.Lava}) {
+    color = u_colorLava;
+    // Glow variation: shift between deep red and orange
+    color.r += ra * 0.06;
+    color.g += ra * 0.1 - 0.02;
+  } else if (species == ${Species.Stone}) {
+    color = u_colorStone;
+    // Subtle grain
+    color += vec3(ra * 0.04 - 0.02);
   } else {
     color = u_colorEmpty;
   }
@@ -177,6 +199,10 @@ export class Renderer {
     setColor("u_colorOil", Species.Oil);
     setColor("u_colorWall", Species.Wall);
     setColor("u_colorFire", Species.Fire);
+    setColor("u_colorPlant", Species.Plant);
+    setColor("u_colorSteam", Species.Steam);
+    setColor("u_colorLava", Species.Lava);
+    setColor("u_colorStone", Species.Stone);
 
     this.resize();
   }

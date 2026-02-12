@@ -6,9 +6,15 @@ const SPECIES_WATER: u8 = 2;
 const SPECIES_OIL: u8 = 3;
 const SPECIES_WALL: u8 = 4;
 const SPECIES_FIRE: u8 = 5;
+const SPECIES_PLANT: u8 = 6;
+const SPECIES_STEAM: u8 = 7;
+const SPECIES_LAVA: u8 = 8;
+const SPECIES_STONE: u8 = 9;
 
 const FIRE_LIFETIME_MIN: u8 = 40;
 const FIRE_LIFETIME_MAX: u8 = 80;
+const STEAM_LIFETIME_MIN: u8 = 100;
+const STEAM_LIFETIME_MAX: u8 = 200;
 
 const CELL_STRIDE: usize = 4;
 
@@ -55,6 +61,13 @@ fn set_rb(cells: &mut [u8], width: usize, x: usize, y: usize, val: u8) {
     cells[i + 2] = val;
 }
 
+fn set_cell_raw(cells: &mut [u8], width: usize, x: usize, y: usize, species: u8, ra: u8, rb: u8, clock: u8) {
+    let i = cell_idx(width, x, y);
+    cells[i] = species;
+    cells[i + 1] = ra;
+    cells[i + 2] = rb;
+    cells[i + 3] = clock;
+}
 
 fn swap_cells(cells: &mut [u8], width: usize, x1: usize, y1: usize, x2: usize, y2: usize) {
     let i1 = cell_idx(width, x1, y1);
@@ -100,6 +113,20 @@ fn update_sand(cells: &mut [u8], width: usize, height: usize, x: usize, y: usize
     }
 }
 
+fn can_displace(species: u8, target: u8) -> bool {
+    match species {
+        SPECIES_WATER => target == SPECIES_EMPTY || target == SPECIES_OIL,
+        SPECIES_OIL => target == SPECIES_EMPTY,
+        SPECIES_LAVA => {
+            target == SPECIES_EMPTY
+                || target == SPECIES_WATER
+                || target == SPECIES_OIL
+                || target == SPECIES_SAND
+        }
+        _ => target == SPECIES_EMPTY,
+    }
+}
+
 fn update_liquid(
     cells: &mut [u8],
     width: usize,
@@ -111,11 +138,10 @@ fn update_liquid(
     clock: u8,
 ) {
     let below_y = y + 1;
-    let is_water = species == SPECIES_WATER;
 
     if below_y < height {
         let below_species = get_species(cells, width, x, below_y);
-        if below_species == SPECIES_EMPTY || (is_water && below_species == SPECIES_OIL) {
+        if can_displace(species, below_species) {
             swap_cells(cells, width, x, y, x, below_y);
             set_clock(cells, width, x, below_y, clock);
             return;
@@ -130,7 +156,7 @@ fn update_liquid(
             if in_bounds(width, height, nx, below_y as isize) {
                 let nx = nx as usize;
                 let diag_species = get_species(cells, width, nx, below_y);
-                if diag_species == SPECIES_EMPTY || (is_water && diag_species == SPECIES_OIL) {
+                if can_displace(species, diag_species) {
                     swap_cells(cells, width, x, y, nx, below_y);
                     set_clock(cells, width, nx, below_y, clock);
                     return;
@@ -147,7 +173,7 @@ fn update_liquid(
         }
         let nx = nx as usize;
         let target_species = get_species(cells, width, nx, y);
-        if target_species == SPECIES_EMPTY || (is_water && target_species == SPECIES_OIL) {
+        if can_displace(species, target_species) {
             swap_cells(cells, width, x, y, nx, y);
             set_clock(cells, width, nx, y, clock);
             return;
@@ -164,8 +190,16 @@ fn ignite(cells: &mut [u8], width: usize, x: usize, y: usize, clock: u8) {
     cells[i + 3] = clock;
 }
 
+fn make_steam(cells: &mut [u8], width: usize, x: usize, y: usize, clock: u8) {
+    let lifetime = STEAM_LIFETIME_MIN + (rand() * (STEAM_LIFETIME_MAX - STEAM_LIFETIME_MIN) as f64) as u8;
+    set_cell_raw(cells, width, x, y, SPECIES_STEAM, rand_ra(), lifetime, clock);
+}
+
+fn make_stone(cells: &mut [u8], width: usize, x: usize, y: usize, clock: u8) {
+    set_cell_raw(cells, width, x, y, SPECIES_STONE, rand_ra(), 0, clock);
+}
+
 fn update_fire(cells: &mut [u8], width: usize, height: usize, x: usize, y: usize, clock: u8) {
-    // Decrease lifetime
     let life = get_rb(cells, width, x, y);
     if life <= 1 {
         let i = cell_idx(width, x, y);
@@ -176,18 +210,19 @@ fn update_fire(cells: &mut [u8], width: usize, height: usize, x: usize, y: usize
     }
     set_rb(cells, width, x, y, life - 1);
 
-    // Flicker effect
     if rand() < 0.4 {
         let i = cell_idx(width, x, y);
         cells[i + 1] = rand_ra();
     }
 
-    // Check if sitting directly on fuel (surface fire)
     let below_y = y + 1;
-    let on_surface = below_y < height && get_species(cells, width, x, below_y) == SPECIES_OIL;
+    let below_species = if below_y < height { get_species(cells, width, x, below_y) } else { SPECIES_EMPTY };
+    let on_surface = below_species == SPECIES_OIL || below_species == SPECIES_PLANT;
 
-    // Check neighbors: ignite oil, get extinguished by water
     let mut extinguished = false;
+    let mut water_nx: usize = 0;
+    let mut water_ny: usize = 0;
+    let mut found_water = false;
     let mut near_fuel = on_surface;
     let mut ignited_one = false;
     for &dy in &[-1isize, 0, 1] {
@@ -206,8 +241,6 @@ fn update_fire(cells: &mut [u8], width: usize, height: usize, x: usize, y: usize
 
             if neighbor == SPECIES_OIL {
                 near_fuel = true;
-                // Only ignite oil that is exposed on the surface
-                // (has empty/fire above it, not buried under more oil)
                 if !ignited_one && rand() < 0.5 {
                     let above_ny = ny as isize - 1;
                     let exposed = if above_ny < 0 {
@@ -223,13 +256,23 @@ fn update_fire(cells: &mut [u8], width: usize, height: usize, x: usize, y: usize
                         ignited_one = true;
                     }
                 }
+            } else if neighbor == SPECIES_PLANT {
+                near_fuel = true;
+                if !ignited_one && rand() < 0.6 {
+                    ignite(cells, width, nx, ny, clock);
+                    ignited_one = true;
+                }
             } else if neighbor == SPECIES_WATER {
                 extinguished = true;
+                if !found_water {
+                    water_nx = nx;
+                    water_ny = ny;
+                    found_water = true;
+                }
             }
         }
     }
 
-    // Fire feeds on nearby fuel — renew lifetime
     if near_fuel && life < FIRE_LIFETIME_MIN {
         set_rb(cells, width, x, y, FIRE_LIFETIME_MIN);
     }
@@ -239,12 +282,12 @@ fn update_fire(cells: &mut [u8], width: usize, height: usize, x: usize, y: usize
         cells[i] = SPECIES_EMPTY;
         cells[i + 1] = 0;
         cells[i + 2] = 0;
+        if found_water {
+            make_steam(cells, width, water_nx, water_ny, clock);
+        }
         return;
     }
 
-    // Surface fire: never rise (stay on fuel to spread laterally)
-    // Near fuel but floating: rarely rise
-    // Free fire: always rise
     let should_rise = if on_surface { false } else if near_fuel { rand() < 0.08 } else { true };
 
     if should_rise && y > 0 {
@@ -271,7 +314,6 @@ fn update_fire(cells: &mut [u8], width: usize, height: usize, x: usize, y: usize
         }
     }
 
-    // Random sideways drift
     if rand() < 0.3 {
         let dx: isize = if rand_bool() { -1 } else { 1 };
         let nx = x as isize + dx;
@@ -283,6 +325,180 @@ fn update_fire(cells: &mut [u8], width: usize, height: usize, x: usize, y: usize
             }
         }
     }
+}
+
+fn update_stone(cells: &mut [u8], width: usize, height: usize, x: usize, y: usize, clock: u8) {
+    let below_y = y + 1;
+
+    if below_y < height {
+        let below_species = get_species(cells, width, x, below_y);
+        if below_species == SPECIES_EMPTY
+            || below_species == SPECIES_WATER
+            || below_species == SPECIES_OIL
+            || below_species == SPECIES_SAND
+        {
+            swap_cells(cells, width, x, y, x, below_y);
+            set_clock(cells, width, x, below_y, clock);
+            return;
+        }
+    }
+
+    if below_y < height {
+        let (dx1, dx2) = if rand_bool() { (-1isize, 1isize) } else { (1, -1) };
+
+        for &dx in &[dx1, dx2] {
+            let nx = x as isize + dx;
+            if in_bounds(width, height, nx, below_y as isize) {
+                let nx = nx as usize;
+                let diag_species = get_species(cells, width, nx, below_y);
+                if diag_species == SPECIES_EMPTY
+                    || diag_species == SPECIES_WATER
+                    || diag_species == SPECIES_OIL
+                    || diag_species == SPECIES_SAND
+                {
+                    swap_cells(cells, width, x, y, nx, below_y);
+                    set_clock(cells, width, nx, below_y, clock);
+                    return;
+                }
+            }
+        }
+    }
+}
+
+fn update_plant(cells: &mut [u8], width: usize, height: usize, x: usize, y: usize, clock: u8) {
+    for &dy in &[-1isize, 0, 1] {
+        for &dx in &[-1isize, 0, 1] {
+            if dx == 0 && dy == 0 {
+                continue;
+            }
+            let nx = x as isize + dx;
+            let ny = y as isize + dy;
+            if !in_bounds(width, height, nx, ny) {
+                continue;
+            }
+            let nx = nx as usize;
+            let ny = ny as usize;
+            let neighbor = get_species(cells, width, nx, ny);
+
+            if neighbor == SPECIES_FIRE || neighbor == SPECIES_LAVA {
+                ignite(cells, width, x, y, clock);
+                return;
+            }
+        }
+    }
+
+    if rand() < 0.04 {
+        let r = rand();
+        let (target_dx, target_dy): (isize, isize) = if r < 0.50 {
+            // 50% upward
+            let dx = if rand_bool() { -1 } else if rand() < 0.5 { 0 } else { 1 };
+            (dx, -1)
+        } else if r < 0.85 {
+            // 35% sideways
+            let dx: isize = if rand_bool() { -1 } else { 1 };
+            (dx, 0)
+        } else {
+            // 15% downward
+            let dx = if rand_bool() { -1 } else if rand() < 0.5 { 0 } else { 1 };
+            (dx, 1)
+        };
+
+        let gx = x as isize + target_dx;
+        let gy = y as isize + target_dy;
+        if in_bounds(width, height, gx, gy) {
+            let gx = gx as usize;
+            let gy = gy as usize;
+            if get_species(cells, width, gx, gy) == SPECIES_WATER {
+                set_cell_raw(cells, width, gx, gy, SPECIES_PLANT, rand_ra(), 0, clock);
+            }
+        }
+    }
+}
+
+fn update_steam(cells: &mut [u8], width: usize, height: usize, x: usize, y: usize, clock: u8) {
+    let life = get_rb(cells, width, x, y);
+    if life <= 1 {
+        set_cell_raw(cells, width, x, y, SPECIES_WATER, rand_ra(), 0, clock);
+        return;
+    }
+    set_rb(cells, width, x, y, life - 1);
+
+    if rand() < 0.3 {
+        let i = cell_idx(width, x, y);
+        cells[i + 1] = rand_ra();
+    }
+
+    if y > 0 {
+        let above = get_species(cells, width, x, y - 1);
+        if above == SPECIES_EMPTY {
+            swap_cells(cells, width, x, y, x, y - 1);
+            set_clock(cells, width, x, y - 1, clock);
+            return;
+        }
+
+        let (dx1, dx2) = if rand_bool() { (-1isize, 1isize) } else { (1, -1) };
+        for &dx in &[dx1, dx2] {
+            let nx = x as isize + dx;
+            let ny = y as isize - 1;
+            if in_bounds(width, height, nx, ny) {
+                let nx = nx as usize;
+                let ny = ny as usize;
+                if get_species(cells, width, nx, ny) == SPECIES_EMPTY {
+                    swap_cells(cells, width, x, y, nx, ny);
+                    set_clock(cells, width, nx, ny, clock);
+                    return;
+                }
+            }
+        }
+    }
+
+    if rand() < 0.5 {
+        let dx: isize = if rand_bool() { -1 } else { 1 };
+        let nx = x as isize + dx;
+        if in_bounds(width, height, nx, y as isize) {
+            let nx = nx as usize;
+            if get_species(cells, width, nx, y) == SPECIES_EMPTY {
+                swap_cells(cells, width, x, y, nx, y);
+                set_clock(cells, width, nx, y, clock);
+            }
+        }
+    }
+}
+
+fn update_lava(cells: &mut [u8], width: usize, height: usize, x: usize, y: usize, clock: u8) {
+    if rand() < 0.3 {
+        let i = cell_idx(width, x, y);
+        cells[i + 1] = rand_ra();
+    }
+
+    for &dy in &[-1isize, 0, 1] {
+        for &dx in &[-1isize, 0, 1] {
+            if dx == 0 && dy == 0 {
+                continue;
+            }
+            let nx = x as isize + dx;
+            let ny = y as isize + dy;
+            if !in_bounds(width, height, nx, ny) {
+                continue;
+            }
+            let nx = nx as usize;
+            let ny = ny as usize;
+            let neighbor = get_species(cells, width, nx, ny);
+
+            if neighbor == SPECIES_WATER {
+                make_steam(cells, width, nx, ny, clock);
+                make_stone(cells, width, x, y, clock);
+                return;
+            }
+            if neighbor == SPECIES_OIL {
+                ignite(cells, width, nx, ny, clock);
+            } else if neighbor == SPECIES_PLANT {
+                ignite(cells, width, nx, ny, clock);
+            }
+        }
+    }
+
+    update_liquid(cells, width, height, x, y, SPECIES_LAVA, 1, clock);
 }
 
 #[wasm_bindgen]
@@ -344,6 +560,18 @@ impl World {
                     SPECIES_FIRE => {
                         update_fire(&mut self.cells, w, h, x, y, clk);
                     }
+                    SPECIES_PLANT => {
+                        update_plant(&mut self.cells, w, h, x, y, clk);
+                    }
+                    SPECIES_STEAM => {
+                        update_steam(&mut self.cells, w, h, x, y, clk);
+                    }
+                    SPECIES_LAVA => {
+                        update_lava(&mut self.cells, w, h, x, y, clk);
+                    }
+                    SPECIES_STONE => {
+                        update_stone(&mut self.cells, w, h, x, y, clk);
+                    }
                     _ => {}
                 }
             }
@@ -365,6 +593,8 @@ impl World {
         };
         let rb = if species == SPECIES_FIRE {
             FIRE_LIFETIME_MIN + (rand() * (FIRE_LIFETIME_MAX - FIRE_LIFETIME_MIN) as f64) as u8
+        } else if species == SPECIES_STEAM {
+            STEAM_LIFETIME_MIN + (rand() * (STEAM_LIFETIME_MAX - STEAM_LIFETIME_MIN) as f64) as u8
         } else {
             0
         };

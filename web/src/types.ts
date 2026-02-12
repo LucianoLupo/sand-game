@@ -5,6 +5,10 @@ export const enum Species {
   Oil = 3,
   Wall = 4,
   Fire = 5,
+  Plant = 6,
+  Steam = 7,
+  Lava = 8,
+  Stone = 9,
 }
 
 export interface Faucet {
@@ -21,4 +25,8 @@ export const COLORS: Record<number, [number, number, number]> = {
   [Species.Oil]: [75, 50, 20],         // #4b3214
   [Species.Wall]: [128, 128, 128],     // #808080
   [Species.Fire]: [255, 100, 20],      // #ff6414
+  [Species.Plant]: [34, 139, 34],      // #228b22
+  [Species.Steam]: [200, 210, 230],    // #c8d2e6
+  [Species.Lava]: [207, 16, 32],       // #cf1020
+  [Species.Stone]: [100, 100, 110],    // #64646e
 };
