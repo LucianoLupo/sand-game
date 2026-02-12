@@ -38,6 +38,7 @@ body {
 #elements {
   display: flex;
   gap: 4px;
+  flex-wrap: wrap;
 }
 
 .element-btn {
@@ -63,12 +64,16 @@ body {
 
 .element-btn[data-element="sand"].active { border-color: #e6c588; color: #e6c588; }
 .element-btn[data-element="water"].active { border-color: #4a90d9; color: #4a90d9; }
+.element-btn[data-element="ice"].active { border-color: #aadcf0; color: #aadcf0; }
 .element-btn[data-element="oil"].active { border-color: #8b6914; color: #c49b2a; }
 .element-btn[data-element="lava"].active { border-color: #cf1020; color: #cf1020; }
 .element-btn[data-element="fire"].active { border-color: #ff6414; color: #ff6414; }
 .element-btn[data-element="steam"].active { border-color: #c8d2e6; color: #c8d2e6; }
+.element-btn[data-element="smoke"].active { border-color: #50505a; color: #a0a0a8; }
 .element-btn[data-element="plant"].active { border-color: #228b22; color: #228b22; }
+.element-btn[data-element="wood"].active { border-color: #8b5a2b; color: #c49b6a; }
 .element-btn[data-element="stone"].active { border-color: #64646e; color: #a0a0a8; }
+.element-btn[data-element="acid"].active { border-color: #64ff32; color: #64ff32; }
 .element-btn[data-element="wall"].active { border-color: #808080; color: #a0a0a0; }
 .element-btn[data-element="eraser"].active { border-color: #ff6b6b; color: #ff6b6b; }
 

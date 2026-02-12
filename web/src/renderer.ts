@@ -19,7 +19,6 @@ out vec4 fragColor;
 
 uniform sampler2D u_cells;
 
-// Base colors per species (normalized 0-1)
 uniform vec3 u_colorEmpty;
 uniform vec3 u_colorSand;
 uniform vec3 u_colorWater;
@@ -30,13 +29,17 @@ uniform vec3 u_colorPlant;
 uniform vec3 u_colorSteam;
 uniform vec3 u_colorLava;
 uniform vec3 u_colorStone;
+uniform vec3 u_colorIce;
+uniform vec3 u_colorSmoke;
+uniform vec3 u_colorAcid;
+uniform vec3 u_colorWood;
 
 void main() {
   vec4 cell = texture(u_cells, v_texCoord);
 
-  // Decode species from red channel (stored as 0-255, normalized to 0-1)
   int species = int(cell.r * 255.0 + 0.5);
-  float ra = cell.g; // ra value (0-1) for color variation
+  float ra = cell.g;
+  float temp = cell.b * 255.0;
 
   vec3 color;
 
@@ -44,44 +47,63 @@ void main() {
     color = u_colorEmpty;
   } else if (species == ${Species.Sand}) {
     color = u_colorSand;
-    // Vary lightness by ra for golden grain effect
     color += vec3(ra * 0.05 - 0.025);
   } else if (species == ${Species.Water}) {
     color = u_colorWater;
-    // Vary blue channel slightly for shimmer
     color.b += ra * 0.06 - 0.03;
     color.g += ra * 0.02 - 0.01;
   } else if (species == ${Species.Oil}) {
     color = u_colorOil;
-    // Subtle dark variation
     color += vec3(ra * 0.03 - 0.015);
   } else if (species == ${Species.Wall}) {
     color = u_colorWall;
   } else if (species == ${Species.Fire}) {
-    color = u_colorFire;
-    // Flicker: ra drives orange-to-yellow variation
-    color.r += ra * 0.05;
-    color.g += ra * 0.15 - 0.05;
+    // Fire color from temperature: deep red → orange → bright yellow
+    float heat = clamp((temp - 30.0) / 200.0, 0.0, 1.0);
+    color = mix(vec3(0.6, 0.1, 0.0), vec3(1.0, 0.9, 0.3), heat);
   } else if (species == ${Species.Plant}) {
     color = u_colorPlant;
-    // Vary green channel for organic look
     color.g += ra * 0.06 - 0.03;
     color.r += ra * 0.02 - 0.01;
   } else if (species == ${Species.Steam}) {
     color = u_colorSteam;
-    // Wispy variation
     color += vec3(ra * 0.04 - 0.02);
   } else if (species == ${Species.Lava}) {
-    color = u_colorLava;
-    // Glow variation: shift between deep red and orange
-    color.r += ra * 0.06;
-    color.g += ra * 0.1 - 0.02;
+    // Lava color from temperature: dark crust → glowing orange
+    float heat = clamp((temp - 95.0) / 160.0, 0.0, 1.0);
+    color = mix(vec3(0.3, 0.05, 0.0), vec3(1.0, 0.4, 0.1), heat);
+    color.r += ra * 0.04;
+    color.g += ra * 0.06 - 0.02;
   } else if (species == ${Species.Stone}) {
     color = u_colorStone;
-    // Subtle grain
     color += vec3(ra * 0.04 - 0.02);
+  } else if (species == ${Species.Ice}) {
+    color = u_colorIce;
+    color += vec3(ra * 0.03 - 0.015);
+  } else if (species == ${Species.Smoke}) {
+    color = u_colorSmoke;
+    // Hotter smoke is lighter
+    float warmth = clamp((temp - 14.0) / 200.0, 0.0, 0.3);
+    color += vec3(warmth);
+    color += vec3(ra * 0.04 - 0.02);
+  } else if (species == ${Species.Acid}) {
+    color = u_colorAcid;
+    color.g += ra * 0.04 - 0.02;
+    color.b += ra * 0.02 - 0.01;
+  } else if (species == ${Species.Wood}) {
+    color = u_colorWood;
+    color += vec3(ra * 0.03 - 0.015);
   } else {
     color = u_colorEmpty;
+  }
+
+  // Temperature glow for non-fire/lava/empty/wall cells
+  if (species != ${Species.Empty} && species != ${Species.Wall}
+      && species != ${Species.Fire} && species != ${Species.Lava}) {
+    if (temp > 40.0) {
+      float glow = clamp((temp - 40.0) / 180.0, 0.0, 0.6);
+      color = mix(color, vec3(1.0, 0.3, 0.05), glow);
+    }
   }
 
   fragColor = vec4(clamp(color, 0.0, 1.0), 1.0);
@@ -203,6 +225,10 @@ export class Renderer {
     setColor("u_colorSteam", Species.Steam);
     setColor("u_colorLava", Species.Lava);
     setColor("u_colorStone", Species.Stone);
+    setColor("u_colorIce", Species.Ice);
+    setColor("u_colorSmoke", Species.Smoke);
+    setColor("u_colorAcid", Species.Acid);
+    setColor("u_colorWood", Species.Wood);
 
     this.resize();
   }

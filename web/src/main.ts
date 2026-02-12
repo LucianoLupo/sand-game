@@ -39,7 +39,7 @@ async function main() {
 
   function loop() {
     if (!ui.paused) {
-      ui.spawnFaucets((x, y, s) => world.set_cell(x, y, s));
+      ui.spawnFaucets((x, y, s, size) => drawBrush(x, y, s, size));
       for (let i = 0; i < TICKS_PER_FRAME; i++) {
         world.tick();
       }

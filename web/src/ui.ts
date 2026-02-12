@@ -3,12 +3,16 @@ import { Species, type Faucet } from "./types";
 const ELEMENT_MAP: Record<string, Species> = {
   sand: Species.Sand,
   water: Species.Water,
+  ice: Species.Ice,
   oil: Species.Oil,
   lava: Species.Lava,
   fire: Species.Fire,
   steam: Species.Steam,
+  smoke: Species.Smoke,
   plant: Species.Plant,
+  wood: Species.Wood,
   stone: Species.Stone,
+  acid: Species.Acid,
   wall: Species.Wall,
   eraser: Species.Empty,
 };
@@ -54,9 +58,9 @@ export class UI {
     document.getElementById("fps")!.textContent = `${fps} FPS`;
   }
 
-  spawnFaucets(setCell: (x: number, y: number, species: number) => void): void {
+  spawnFaucets(draw: (x: number, y: number, species: number, size: number) => void): void {
     for (const f of this.faucets) {
-      setCell(f.x, f.y, f.species);
+      draw(f.x, f.y, f.species, f.size);
     }
   }
 
@@ -78,7 +82,7 @@ export class UI {
       if (idx >= 0) {
         this.faucets.splice(idx, 1);
       } else {
-        this.faucets.push({ x, y, species: this.selectedElement });
+        this.faucets.push({ x, y, species: this.selectedElement, size: this.brushSize });
       }
       return;
     }
