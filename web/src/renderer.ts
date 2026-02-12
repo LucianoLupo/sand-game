@@ -25,6 +25,7 @@ uniform vec3 u_colorSand;
 uniform vec3 u_colorWater;
 uniform vec3 u_colorOil;
 uniform vec3 u_colorWall;
+uniform vec3 u_colorFire;
 
 void main() {
   vec4 cell = texture(u_cells, v_texCoord);
@@ -52,6 +53,11 @@ void main() {
     color += vec3(ra * 0.03 - 0.015);
   } else if (species == ${Species.Wall}) {
     color = u_colorWall;
+  } else if (species == ${Species.Fire}) {
+    color = u_colorFire;
+    // Flicker: ra drives orange-to-yellow variation
+    color.r += ra * 0.05;
+    color.g += ra * 0.15 - 0.05;
   } else {
     color = u_colorEmpty;
   }
@@ -170,6 +176,7 @@ export class Renderer {
     setColor("u_colorWater", Species.Water);
     setColor("u_colorOil", Species.Oil);
     setColor("u_colorWall", Species.Wall);
+    setColor("u_colorFire", Species.Fire);
 
     this.resize();
   }

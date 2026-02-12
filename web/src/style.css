@@ -64,6 +64,7 @@ body {
 .element-btn[data-element="sand"].active { border-color: #e6c588; color: #e6c588; }
 .element-btn[data-element="water"].active { border-color: #4a90d9; color: #4a90d9; }
 .element-btn[data-element="oil"].active { border-color: #8b6914; color: #c49b2a; }
+.element-btn[data-element="fire"].active { border-color: #ff6414; color: #ff6414; }
 .element-btn[data-element="wall"].active { border-color: #808080; color: #a0a0a0; }
 .element-btn[data-element="eraser"].active { border-color: #ff6b6b; color: #ff6b6b; }
 
